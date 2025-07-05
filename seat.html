@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-     body {
+    body {
       background-color: rgb(0, 0, 0);
       color: #ffffff;
       font-family: 'Manrope', sans-serif;
@@ -19,7 +19,7 @@
       background-color: #121212;
       padding: 1rem 0;
     }
- .movie-header {
+    .movie-header {
       position: relative;
       background-size: cover;
       background-position: center;
@@ -36,7 +36,7 @@
       background-color: #00c17c;
       color: white;
     }
-.hero-section {
+    .hero-section {
       position: relative;
       max-height: 500px;
       overflow: hidden;
@@ -55,20 +55,19 @@
       padding: 2rem;
     }
     
-.status-label {
+    .status-label {
       display: flex;
       align-items: center;
     }
 
     footer {
-  width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-}
-         @media (max-width: 768px) {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+      @media (max-width: 768px) {
         
-    
-.hero-overlay {
+      .hero-overlay {
         padding: 1rem;
       }
       
@@ -76,42 +75,52 @@
         font-size: 1.5rem;
       }
       
-      .navbar-collapse[style] {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
+      .navbar-collapse {
+      display: flex;
+      flex-direction: column-reverse;
+      padding-top: 1rem !important;
       }
-      .navbar-collapse .navbar-nav,
-      .navbar-collapse form,
-      .navbar-collapse .form-select {
-        padding-left: 0 !important;
-        margin-left: 0 !important;
+
+      #userIcon {
+        align-self: flex-end;
+        margin-bottom: 1rem;
+        margin-right: 16px;
       }
-      .navbar-nav .nav-item .nav-link {
-        padding-left: 0 !important;
-        text-align: left;
-      }
-      .navbar-collapse form.d-flex {
-        flex-direction: column;
-        gap: 0.5rem;
+
+      .navbar-nav {
+        width: 100%;
         margin-top: 1rem;
-        padding-left: 16px;
+      padding-left: 16px !important;
       }
+
+      .nav-item {
+        padding: 0.5rem 0;
+      }
+
+      .navbar-collapse form.d-flex,
+      .navbar-collapse .text-light {
+        width: 100%;
+        padding: 0 0px !important;
+        margin: 0.5rem 0 !important;
+      }
+
       .navbar-collapse input[type="search"],
       .navbar-collapse .form-select {
-      width: 100%;
+        width: 100%;
       }
-      .navbar-collapse input[type="search"] {
-        margin-bottom: 0.8rem;
-        padding-left: 16px;
-    }
-  }
+
+      .navbar-collapse .me-auto,
+      .navbar-collapse .me-3 {
+        margin-right: 0 !important;
+      }
+      }
 
   </style>
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">Movie<span class="text-success">Hive</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -120,32 +129,36 @@
       <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 16px;">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link " href="home.html" data-bs-toggle="collapse" data-bs-target="#navbarNav">Home</a>
+            <a class="nav-link" href="home.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light fw-bold" href="now_showing.html" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="padding-left: 16px;">Now Showing</a>
+            <a class="nav-link text-light fw-bold" href="now_showing.html">Now Showing</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="padding-left: 16px;">Upcoming</a>
-          </li>          
+            <a class="nav-link" href="upcoming.html">Upcoming</a>
+          </li>
         </ul>
+  
+        <!-- Pencarian -->
         <form class="d-flex me-3">
-            <style>
-                input[type="search"]::placeholder {
-                    color: #797979;
-                }
-            </style>
-            <input class="form-control me-2 bg-dark text-secondary border-secondary" type="search" placeholder="Cari Film">
+          <style>
+            input[type="search"]::placeholder {
+              color: #797979;
+            }
+          </style>
+          <input class="form-control me-2 bg-dark text-secondary border-secondary" type="search" placeholder="Cari Film">
         </form>
-        <div class="text-light">
+  
+        <!-- Pilih Kota -->
+        <div class="text-light me-3">
           <style>
             .form-select.bg-dark option {
-                background-color: #212529;
-                color: #ffffff;
+              background-color: #212529;
+              color: #ffffff;
             }
-
+  
             .form-select.bg-dark option[disabled] {
-                color: #adb5bd;
+              color: #adb5bd;
             }
           </style>
           <select class="form-select bg-dark text-secondary border-secondary rounded-search">
@@ -156,9 +169,15 @@
             <option>Surabaya</option>
             <option>Medan</option>
           </select>
-
         </div>
-        
+  
+        <!-- Ikon User -->
+        <div>
+          <button id="userIcon" class="btn btn-outline-light rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px; transition: transform 0.2s;">
+            <i class="bi bi-person-fill" style="font-size: 20px;"></i>
+          </button>
+        </div>
+  
       </div>
     </div>
   </nav>
@@ -411,11 +430,3 @@
   </div>
 </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
