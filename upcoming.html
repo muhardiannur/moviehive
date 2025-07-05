@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MovieHive</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: rgb(0, 0, 0);
+      color: #ffffff;
+      font-family: 'Manrope', sans-serif;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background-color: #121212;
+      padding: 1rem 0;
+    }
+
+    .hero-section {
+      position: relative;
+      max-height: 500px;
+      overflow: hidden;
+       margin-bottom: 3rem;
+    }
+
+    .hero-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-weight: 600;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-rating {
+      color: #FFD700;
+      font-size: 1rem;
+    }
+
+    .filter-gradient {
+      height: 60px;
+      background: linear-gradient(to bottom, #007844 0%, rgba(0,0,0,0) 100%);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-weight: 600;
+      font-size: 1.5rem;
+      margin: 4rem 0 2rem;
+    }
+
+    .card-body h5.card-title {
+      margin-bottom: 0.1rem;
+    }
+
+    .card-body p.card-text {
+      margin-bottom: 0.1rem;
+    }
+
+    .card-body .text-warning {
+      margin-bottom: 0.1rem !important;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 {
+      margin-bottom: 0.5rem !important;
+    }
+
+    .card {
+      background: transparent;
+      border: none;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card-img {
+      border-radius: 0.5rem;
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+    .card-img-top {
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      width: 100%;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+
+    .card-img-cinema, 
+    .card-img-food {
+      aspect-ratio: 3/4;
+    }
+
+    .card-body {
+      padding: 0;
+      margin-top: 0.75rem;
+    }
+
+    .card-title {
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-text {
+      font-size: 0.875rem;
+      color: #aaaaaa;
+      margin-bottom: 0.75rem;
+    }
+
+    .rating {
+      color: #FFD700;
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .btn-ticket {
+      background-color: #198754;
+      color: white;
+      border: none;
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+      font-size: 0.875rem;
+      width: 100%;
+      font-weight: 500;
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+      color: #000;
+      border: none;
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+      font-size: 0.875rem;
+      width: 100%;
+      font-weight: 500;
+    }
+
+    .btn-reminder {
+      border: 1px solid #f8f9fa;
+      color: #f8f9fa;
+      border-radius: 0.25rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-collapse {
+      display: flex;
+      flex-direction: column-reverse;
+      padding-top: 1rem !important;
+    }
+
+    #userIcon {
+      align-self: flex-end;
+      margin-bottom: 1rem;
+      margin-right: 16px;
+    }
+
+    .navbar-nav {
+      width: 100%;
+      margin-top: 1rem;
+      padding-left: 16px !important;
+    }
+
+    .nav-item {
+      padding: 0.5rem 0;
+    }
+
+    .navbar-collapse form.d-flex,
+    .navbar-collapse .text-light {
+      width: 100%;
+      padding: 0 0px !important;
+      margin: 0.5rem 0 !important;
+    }
+
+    .navbar-collapse input[type="search"],
+    .navbar-collapse .form-select {
+      width: 100%;
+    }
+
+    .navbar-collapse .me-auto,
+    .navbar-collapse .me-3 {
+      margin-right: 0 !important;
+    }
+
+    .hero-overlay {
+      padding: 1rem;
+    }
+  
+    .hero-title {
+      font-size: 1.5rem;
+    }
+  
+    .vip-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      text-align: left;
+    }
+
+    .vip-banner .d-flex.align-items-center {
+      flex-direction: row;
+      width: 100%;
+    }
+
+    .vip-banner .ms-3 {
+      margin-left: 1rem;
+    }
+
+    .vip-banner .text-end {
+      width: 100%;
+      text-align: left;
+    }
+
+    .vip-banner .text-end > * {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .vip-banner .text-end a.btn {
+      width: 100%;
+    }
+
+    .btn-filter {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+    }
+
+    .hero-section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        max-height: none;
+        height: auto;
+        min-height: 40vh;
+        overflow: hidden;
+    }
+    
+    .hero-section img {
+        width: 100%;
+        height: 20%;
+        object-fit: cover;
+        object-position: center center;
+        flex-grow: 1;
+    }
+    
+    .hero-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.5) 50%, transparent 100%);
+        padding: 1.5rem 1rem 3rem;
+        z-index: 2;
+    }
+    
+    .hero-overlay .container {
+        padding: 0;
+    }
+    
+    .hero-overlay img.w-25 {
+        width: 120px !important;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-rating, .hero-title {
+        text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+  }
+
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Movie<span class="text-success">Hive</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 16px;">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="now_showing.html">Now Showing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light fw-bold" href="#">Upcoming</a>
+          </li>
+        </ul>
+  
+        <!-- Pencarian -->
+        <form class="d-flex me-3">
+          <style>
+            input[type="search"]::placeholder {
+              color: #797979;
+            }
+          </style>
+          <input class="form-control me-2 bg-dark text-secondary border-secondary" type="search" placeholder="Cari Film">
+        </form>
+  
+        <!-- Pilih Kota -->
+        <div class="text-light me-3">
+          <style>
+            .form-select.bg-dark option {
+              background-color: #212529;
+              color: #ffffff;
+            }
+  
+            .form-select.bg-dark option[disabled] {
+              color: #adb5bd;
+            }
+          </style>
+          <select class="form-select bg-dark text-secondary border-secondary rounded-search">
+            <option>Pilih Kota</option>
+            <option>Yogyakarta</option>
+            <option>Jakarta</option>
+            <option>Bandung</option>
+            <option>Surabaya</option>
+            <option>Medan</option>
+          </select>
+        </div>
+  
+        <!-- Ikon User -->
+        <div>
+          <button id="userIcon" class="btn btn-outline-light rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px; transition: transform 0.2s;">
+            <i class="bi bi-person-fill" style="font-size: 20px;"></i>
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+<div class="hero-section">
+  <img src="assets/f4.webp" alt="F1 The Movie">
+  <div class="hero-overlay">
+    <div class="container">
+      <img class="w-25 mb-3" src="assets/f4seeklogo.png" alt="" />
+      <div class="hero-rating">
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-half"></i>
+        <span class="text-white ms-1">4.5</span>
+      </div>
+      <div class="d-flex mt-4 gap-1">
+        <button class="btn btn-success">
+          <i class="bi bi-play-fill me-1"></i> Putar Trailer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Action -->
+
+  <div class="container" style="margin-bottom: 32px; margin-top: 82px;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="section-title m-0">Action</h4>
+    <a href="#" class="text-secondary fw-medium text-decoration-none d-flex align-items-center gap-1">
+      Lihat semua <i class="bi bi-chevron-right"></i>
+    </a>
+  </div>
+  <div class="row" style="margin-bottom: 82px;">
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-4">
+    <!-- Superman -->
+    <div class="col" >
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/superman.jpg" class="card-img-top" alt="Superman">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Superman</h5>
+          <p class="card-text">+13 • 2j 10m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 11 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jurassic World -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/jurassic.jpg" class="card-img-top" alt="Jurassic World Rebirth">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Jurassic World Rebirth</h5>
+          <p class="card-text">+13 • 2j 13m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 4 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fantastic 4 -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/fantasticposter.jpeg" class="card-img-top" alt="The Fantastic Four: First Steps">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">The Fantastic Four: First Steps</h5>
+          <p class="card-text">+13 • 2j 10m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 28 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- hi five -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/hifive.jpg" class="card-img-top" alt="HI-FIVE">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">HI-FIVE</h5>
+          <p class="card-text">+13 • 3j 13m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event"></i>Rilis 28 Desember 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heads of State -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/heads.jpg" class="card-img-top" alt="Heads of State">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Heads of State</h5>
+          <p class="card-text">+13 • 1j 53m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 2 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How To Train Your Dragon -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/howtotrain.jpg" class="card-img-top" alt="How To Train Your Dragon">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">How To Train Your Dragon</h5>
+          <p class="card-text">SU • 2j 5m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 29 Juni 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+    <!-- Drama -->
+    <div class="container" style="margin-bottom: 32px; margin-top: 82px;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="section-title m-0">Drama</h4>
+    <a href="#" class="text-secondary fw-medium text-decoration-none d-flex align-items-center gap-1">
+      Lihat semua <i class="bi bi-chevron-right"></i>
+    </a> 
+  </div>
+    <div class="row" style="margin-bottom: 82px;">
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-4">
+    <!-- Eden -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/eden.jpg" class="card-img-top" alt="EDEN">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">EDEN</h5>
+          <p class="card-text">+13 • 1j 35m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 22 Agustus 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eddington -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/eddington.jpg" class="card-img-top" alt="Eddington">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Eddington</h5>
+          <p class="card-text">+13 • 2j 6m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 18 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A Big Bold Beautiful Journey -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/bigbold.jpg" class="card-img-top" alt="A Big Bold Beautiful Journey">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">A Big Bold Beautiful Journey</h5>
+          <p class="card-text">+13 • 2j 19m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 19 Agustus 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sore: Istri dari Masa Depan -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/sore.jpg" class="card-img-top" alt="Sore: Istri dari Masa Depan">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Sore: Istri dari Masa Depan</h5>
+          <p class="card-text">+13 • 1j 59m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 10 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assalamualaikum Baitullah -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/assalamualaikum.jpg" class="card-img-top" alt="Assalamualaikum Baitullah">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Assalamu'alaikum Baitullah</h5>
+          <p class="card-text">+13 • 1j 41m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 17 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bertaut Rindu -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/bertaut.jpg" class="card-img-top" alt="Bertaut Rindu">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Bertaut Rindu</h5>
+          <p class="card-text">13+ • 1j 32m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 31 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+   <!-- Horror -->
+ <div class="container" style="margin-bottom: 32px; margin-top: 82px;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="section-title m-0">Horror</h4>
+    <a href="#" class="text-secondary fw-medium text-decoration-none d-flex align-items-center gap-1">
+      Lihat semua <i class="bi bi-chevron-right"></i>
+    </a> 
+  </div>
+    <div class="row" style="margin-bottom: 82px;">
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-4">
+    <!-- The Conjuring: Last Rites -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/conjuring.jpg" class="card-img-top" alt="The Conjuring: Last Rites">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">The Conjuring: Last Rites</h5>
+          <p class="card-text">+13 • 2j 8m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 5 September 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- I Know What You Did Last Summer -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/iknow.jpg" class="card-img-top" alt="I Know What You Did Last Summer">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">I Know What You Did Last Summer</h5>
+          <p class="card-text">+13 • 1j 49m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 18 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gerbang Setan -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/gerbang.jpg" class="card-img-top" alt="Gerbang Setan">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Gerbang Setan</h5>
+          <p class="card-text">+13 • 1j 36m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>17 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Selepas Tahlil -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/selepas.jpg" class="card-img-top" alt="Selepas Tahlilan">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Selepas Tahlil</h5>
+          <p class="card-text">+13 • 1j 36m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 10 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rego Nyowo -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/rego.jpg" class="card-img-top" alt="Rego Nyowo">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Rego Nyowo</h5>
+          <p class="card-text">+13 • 1j 41m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 17 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Five Nights at Freddy's 2 -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/fivenights.jpg" class="card-img-top" alt="Five Nights at Freddy's 2">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Five Nights at Freddy's 2</h5>
+          <p class="card-text">13+ • 2j 1m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 5 Desember 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+   
+
+    <!-- Animasi -->
+ <div class="container" style="margin-bottom: 32px; margin-top: 82px;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="section-title m-0">Animasi</h4>
+    <a href="#" class="text-secondary fw-medium text-decoration-none d-flex align-items-center gap-1">
+      Lihat semua <i class="bi bi-chevron-right"></i>
+    </a> 
+  </div>
+    <div class="row" style="margin-bottom: 82px;">
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-4">
+    <!-- Doraemon: Nobita's Art World Tales -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/doraemon.jpg" class="card-img-top" alt="Doraemon: Nobita's Art World Tales">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Doraemon: Nobita's Art World Tales</h5>
+          <p class="card-text">SU • 1j 45m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 5 Agustus 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crayon Shin-chan the Movie -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/shinchan.jpg" class="card-img-top" alt="Crayon Shin-chan the Movie">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">I Know What You Did Last Summer</h5>
+          <p class="card-text">SU • 1j 46m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 8 Agustus 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nintama Rantaro: Invincible Master Of The Dokutake Ninja -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/nintama.jpg" class="card-img-top" alt="Nintama Rantaro: Invincible Master Of The Dokutake Ninja">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Nintama Rantaro</h5>
+          <p class="card-text">SU • 1j 30m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>20 Agustus 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Smurfs -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/smurfs.jpg" class="card-img-top" alt="Smurfs">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Smurfs</h5>
+          <p class="card-text">SU • 1j 32m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 16 Juli 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zootopia 2 -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/zootopia.jpg" class="card-img-top" alt="Zootopia 2">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Zootopia 2</h5>
+          <p class="card-text">SU • 1j 43m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 26 November 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Bad Guys 2 -->
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="assets/thebad.jpg" class="card-img-top" alt="The Bad Guys 2">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">The Bad Guys 2</h5>
+          <p class="card-text">SU • 1j 32m</p>
+          <p class="text-warning fw-bold mb-2 mt-3" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-event me-1"></i>Rilis 1 Agustus 2025
+          </p>
+          <div class="mt-auto d-flex gap-3">
+            <button class="btn btn-ticket">
+              <i class="bi bi-play-fill me-1"></i> Putar Trailer
+            </button>
+            <button class="btn btn-reminder">
+              <i class="bi bi-bell text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Footer -->
+<footer class="bg-dark text-white pt-5 pb-4">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Brand Column -->
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex flex-column h-100">
+          <h4 class="d-flex align-items-center mb-3">
+            <span class="fw-bold text-white">Movie</span>
+            <span class="fw-bold text-success ms-1">Hive</span>
+          </h4>
+          <p class="text-muted mb-4">Platform pemesanan tiket bioskop terbaik dengan pengalaman menonton yang tak terlupakan.</p>
+          <div class="mt-auto">
+            <h6 class="text-white mb-3">Follow Kami</h6>
+            <div class="d-flex gap-3">
+              <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-white fs-5"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="text-white fs-5"><i class="bi bi-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Links Column 1 -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="text-success mb-4 fw-bold">Tiket</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-text-light">Jadwal Bioskop</a></li>
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-text-light">Promo Tiket</a></li>
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-text-light">Tiket Saya</a></li>
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-text-light">Pembayaran</a></li>
+          <li><a href="#" class="text-white-50 text-decoration-none hover-text-success">Cara Pesan</a></li>
+        </ul>
+      </div>
+
+      <!-- Links Column 2 -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="text-success mb-4 fw-bold">Film</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-text-light">Sedang Tayang</a></li>
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-text-light">Akan Datang</a></li>
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-text-light">Rekomendasi</a></li>
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-text-light">Film Terpopuler</a></li>
+          <li><a href="#" class="text-white-50 text-decoration-none hover-text-light">Genre Film</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter Column -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="text-success mb-4 fw-bold">Newsletter</h5>
+        <p class="text-white-50 mb-3">Dapatkan update film terbaru dan promo menarik langsung ke email Anda!</p>
+        <div class="input-group mb-3">
+          <input type="email" class="form-control bg- border-dark text-dark" placeholder="Alamat Email">
+          <button class="btn btn-success" type="button">
+            <i class="bi bi-envelope-check"></i>
+          </button>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="newsletterCheck" checked>
+          <label class="form-check-label text-white-50 small" for="newsletterCheck">
+            Saya setuju menerima newsletter
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="my-4 border-secondary">
+
+    <!-- Bottom Footer -->
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <p class="mb-0 text-white-50 small">&copy; 2025 Movie<span class="text-success">Hive</span>. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="#" class="text-white-50 text-decoration-none small hover-text-success">Kebijakan Privasi</a></li>
+          <li class="list-inline-item mx-2">•</li>
+          <li class="list-inline-item"><a href="#" class="text-white-50 text-decoration-none small hover-text-success">Syarat & Ketentuan</a></li>
+          <li class="list-inline-item mx-2">•</li>
+          <li class="list-inline-item"><a href="#" class="text-white-50 text-decoration-none small hover-text-success">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
