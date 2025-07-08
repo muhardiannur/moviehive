@@ -44,6 +44,6 @@ function validasiSignup(form) {
       return false;
     }
     alert("Register berhasil! Silahkan masuk kembali");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
     return false; 
 }
